@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import BoardColumn from './BoardColumn';
 import BoardLayout from './BoardLayout';
 import TaskModal from './TaskModal';
 
@@ -21,7 +22,7 @@ function Board({ showModal, setShowModal }) {
 
   return (
     <BoardLayout>
-      <h2>Board</h2>
+      <BoardColumn />
       {
         showModal && (
           <TaskModal
