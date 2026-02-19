@@ -25,7 +25,7 @@ function TaskCard({ task }) {
         >
           <VerticalEllipsisSvg />
         </button>
-        {showMenu && <TaskActionMenu />}
+        {showMenu && <TaskActionMenu task={task} />}
       </div>
       <div className="mb-3">
         <h3

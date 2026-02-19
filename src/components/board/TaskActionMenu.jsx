@@ -1,5 +1,5 @@
 
-function TaskActionMenu() {
+function TaskActionMenu({ task }) {
   return (
     <div
       className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700 py-2 z-40"
@@ -28,6 +28,7 @@ function TaskActionMenu() {
       >
         <button
           type="button"
+          onClick={() => console.log('Edit task:', task)}
           className="w-full text-left px-4 py-2 hover:bg-gray-50"
         >
           Edit Card

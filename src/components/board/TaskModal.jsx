@@ -7,7 +7,7 @@ import {
   FormSelectElement
 } from '../common/form/index';
 
-function TaskModal({ task, setTask, onClose }) {
+function TaskModal({ task, setTask, onClose, onSave }) {
 
   const [errors, setErrors] = useState({});
   const isEditing = Object.is(task, null);
@@ -65,6 +65,8 @@ function TaskModal({ task, setTask, onClose }) {
     if (!validateForm()) {
       return;
     }
+
+    onSave(task);
   };
 
 

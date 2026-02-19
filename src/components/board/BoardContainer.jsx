@@ -1,9 +1,7 @@
-import { useState } from 'react';
-import { getAllTasks } from '../../data/task-data';
+
 import Column from './Column';
 
-function BoardContainer() {
-  const [tasks, setTasks] = useState(getAllTasks());
+function BoardContainer({ tasks }) {
   const todoTasks = tasks.filter(task => task.status === 'todo');
   const inProgressTasks = tasks.filter(task => task.status === 'in-progress');
   const doneTasks = tasks.filter(task => task.status === 'done');

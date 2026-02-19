@@ -1,3 +1,4 @@
+import TaskProvider from '../../providers/TaskProvider';
 import Board from '../board/Board';
 import Main from "./Main";
 import Sidebar from "./Sidebar";
@@ -9,7 +10,9 @@ function Layout() {
       <div className="bg-gray-50 min-h-screen flex flex-col lg:flex-row">
         <Sidebar />
         <Main>
-          <Board />
+          <TaskProvider>
+            <Board />
+          </TaskProvider>
         </Main>
       </div>
     </>
