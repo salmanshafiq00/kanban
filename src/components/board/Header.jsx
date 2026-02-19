@@ -1,4 +1,4 @@
-import TaskSearch from "../board/TaskSearch";
+import TaskSearch from "./TaskSearch";
 
 function Header({ setShowModal }) {
   return (

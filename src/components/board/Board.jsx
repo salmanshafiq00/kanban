@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import BoardColumn from './BoardColumn';
+import BoardContainer from './BoardContainer';
 import BoardLayout from './BoardLayout';
+import Header from './Header';
 import TaskModal from './TaskModal';
 
-function Board({ showModal, setShowModal }) {
+function Board() {
   const defaultTask = {
     title: '',
     description: '',
@@ -14,6 +15,7 @@ function Board({ showModal, setShowModal }) {
 
   };
   const [task, setTask] = useState(defaultTask);
+  const [showModal, setShowModal] = useState(false);
 
   const handleClose = () => {
     setTask(defaultTask);
@@ -22,7 +24,8 @@ function Board({ showModal, setShowModal }) {
 
   return (
     <BoardLayout>
-      <BoardColumn />
+      <Header setShowModal={setShowModal} />
+      <BoardContainer />
       {
         showModal && (
           <TaskModal

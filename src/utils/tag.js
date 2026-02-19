@@ -50,6 +50,11 @@ const getAllTags = () => {
   return TAGS;
 }
 
+const getTagByValue = (value) => {
+  return TAGS.find(tag => tag.value === value);
+}
+
 export {
-  getAllTags, TAGS
+  getAllTags, getTagByValue, TAGS
 };
+

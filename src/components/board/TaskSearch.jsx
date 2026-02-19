@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchSvg } from "../icons/index.jsx";
+import { SearchSvg } from "../icons";
 
 function TaskSearch() {
   const [searchQuery, setSearchQuery] = useState('');
