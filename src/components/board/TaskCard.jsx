@@ -18,7 +18,7 @@ function TaskCard({ task }) {
       >
         <button
           type="button"
-          className="p-1 rounded-full hover:bg-gray-100 hover:text-gray-700 focus:outline-none"
+          className="p-1 rounded-full hover:bg-gray-100 hover:text-gray-700 focus:outline-none cursor-pointer"
           data-card-menu-toggle={task.title.toLowerCase().replace(/\s+/g, '-') + '-menu'}
           aria-label="Open card menu"
           onClick={() => setShowMenu(!showMenu)}

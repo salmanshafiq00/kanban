@@ -1,5 +1,5 @@
 
-import Column from './Column';
+import BoardColumn from './BoardColumn';
 
 function BoardContainer({ tasks }) {
   const todoTasks = tasks.filter(task => task.status === 'todo');
@@ -9,15 +9,15 @@ function BoardContainer({ tasks }) {
   return (
     <div className="flex-1 p-4 sm:p-6 lg:p-8 min-h-0">
       <div className="flex flex-col gap-6 xl:flex-row h-full">
-        <Column
+        <BoardColumn
           key="todo"
           title="To-Do"
           tasks={todoTasks} />
-        <Column
+        <BoardColumn
           key="in-progress"
           title="In Progress"
           tasks={inProgressTasks} />
-        <Column
+        <BoardColumn
           key="done"
           title="Done"
           tasks={doneTasks} />

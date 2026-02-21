@@ -1,4 +1,4 @@
-import TaskProvider from '../../providers/TaskProvider';
+import { TaskModalProvider, TaskProvider } from '../../providers';
 import Board from '../board/Board';
 import Main from "./Main";
 import Sidebar from "./Sidebar";
@@ -11,7 +11,9 @@ function Layout() {
         <Sidebar />
         <Main>
           <TaskProvider>
-            <Board />
+            <TaskModalProvider>
+              <Board />
+            </TaskModalProvider>
           </TaskProvider>
         </Main>
       </div>

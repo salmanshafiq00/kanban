@@ -1,6 +1,9 @@
+import { TaskModalActionTypes } from "../../constants/action-types";
+import { useTaskModalContext } from "../../hooks";
 import TaskSearch from "./TaskSearch";
 
-function Header({ setShowModal }) {
+function Header() {
+  const { dispatch } = useTaskModalContext();
   return (
     <div
       className="bg-white border-b border-gray-200 px-4 py-4 sm:px-6 sm:py-6 lg:px-8"
@@ -23,7 +26,11 @@ function Header({ setShowModal }) {
         >
           <TaskSearch />
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => dispatch(
+              {
+                type: TaskModalActionTypes.SHOW_MODAL,
+                payload: { isEditMode: false }
+              })}
             className="px-4 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors cursor-pointer"
           >
             + Add Task

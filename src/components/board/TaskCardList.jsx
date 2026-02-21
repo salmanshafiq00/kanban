@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard";
 
-function TaskCardContainer({ tasks }) {
+function TaskCardList({ tasks }) {
   return (
     <div
       className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto"
@@ -13,4 +13,4 @@ function TaskCardContainer({ tasks }) {
     </div>
   );
 };
-export default TaskCardContainer;
+export default TaskCardList;

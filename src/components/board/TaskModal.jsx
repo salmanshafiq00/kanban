@@ -1,5 +1,7 @@
 
 import { useState } from 'react';
+import { TaskActionTypes, TaskModalActionTypes } from '../../constants/action-types';
+import { useTaskContext, useTaskModalContext } from '../../hooks';
 import { getAllTags } from '../../utils/tag';
 import {
   FormDateElement,
@@ -7,10 +9,12 @@ import {
   FormSelectElement
 } from '../common/form/index';
 
-function TaskModal({ task, setTask, onClose, onSave }) {
+function TaskModal() {
 
+  const { isEditMode, task: initialTask, dispatch: dispatchModal } = useTaskModalContext();
+  const { dispatch } = useTaskContext();
   const [errors, setErrors] = useState({});
-  const isEditing = Object.is(task, null);
+  const [task, setTask] = useState(initialTask);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,8 +69,12 @@ function TaskModal({ task, setTask, onClose, onSave }) {
     if (!validateForm()) {
       return;
     }
-
-    onSave(task);
+    if (isEditMode) {
+      dispatch({ type: TaskActionTypes.UPDATE_TASK, payload: task });
+    } else {
+      dispatch({ type: TaskActionTypes.ADD_TASK, payload: { ...task, createdAt: Date.now() } });
+    }
+    dispatchModal({ type: TaskModalActionTypes.HIDE_MODAL });
   };
 
 
@@ -87,10 +95,10 @@ function TaskModal({ task, setTask, onClose, onSave }) {
         <div className="bg-white border border-gray-200 rounded-2xl shadow-2xl p-6 sm:p-8">
           <div className="mb-6 pb-6 border-b border-gray-100">
             <h1 className="text-3xl font-bold text-gray-900">
-              {isEditing ? 'Edit Task' : 'Add Task'}
+              {isEditMode ? 'Edit Task' : 'Add Task'}
             </h1>
             <p className="text-sm text-gray-500 mt-2">
-              {isEditing
+              {isEditMode
                 ? 'Update the task details below.'
                 : 'Create a new card for your board.'}
             </p>
@@ -169,7 +177,7 @@ function TaskModal({ task, setTask, onClose, onSave }) {
                 type="button"
                 onClick={() => {
                   setErrors({});
-                  onClose();
+                  dispatchModal({ type: TaskModalActionTypes.HIDE_MODAL });
                 }}
                 className="inline-flex items-center justify-center rounded-xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
               >
@@ -179,7 +187,7 @@ function TaskModal({ task, setTask, onClose, onSave }) {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-gray-800 transition-colors cursor-pointer"
               >
-                {isEditing ? 'Update Task' : 'Add Task'}
+                {isEditMode ? 'Update Task' : 'Add Task'}
               </button>
             </div>
           </form>
