@@ -10,7 +10,7 @@ function TaskFilter({ tasks, filterTag, setFilterTag }) {
       <button
         type="button"
         onClick={() => setIsFilterOpen(isFilterOpen => !isFilterOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none cursor-pointer"
+        className={`flex items-center gap-2 px-3 py-1.5 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none cursor-pointer ${filterTag ? 'bg-blue-50 text-blue-500' : 'text-gray-600 bg-white'}`}
         data-menu-toggle="todo-filter-menu"
       >
         <FilterSvg />
@@ -27,7 +27,10 @@ function TaskFilter({ tasks, filterTag, setFilterTag }) {
               className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider flex justify-between items-center"
             >
               <p>Filter by tag</p>
-              <p className="text-xs text-gray-500 hover:text-gray-700 cursor-pointer" onClick={() => setFilterTag(null)}> X Clear</p>
+              <p className="text-xs text-gray-500 hover:text-gray-700 cursor-pointer" onClick={() => {
+                setFilterTag(null);
+                setIsFilterOpen(false);
+              }}> X Clear</p>
             </div>
             {
               tasks?.length > 0 && tasks.map(task => (
