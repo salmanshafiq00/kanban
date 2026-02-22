@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { getTagLabelByValue } from '../../utils/tag';
 import { FilterSvg } from "../icons";
 
-function TaskFilter() {
+function TaskFilter({ tasks, filterTag, setFilterTag }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
@@ -22,34 +23,32 @@ function TaskFilter() {
             id="todo-filter-menu"
             data-menu
           >
-            <p
-              className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider"
+            <div
+              className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider flex justify-between items-center"
             >
-              Filter by tag
-            </p>
-            <button
-              type="button"
-              className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
-            >
-              Design
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
-            >
-              Operations
-            </button>
-            <button
-              type="button"
-              className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
-            >
-              Marketing
-            </button>
+              <p>Filter by tag</p>
+              <p className="text-xs text-gray-500 hover:text-gray-700 cursor-pointer" onClick={() => setFilterTag(null)}> X Clear</p>
+            </div>
+            {
+              tasks?.length > 0 && tasks.map(task => (
+                <button
+                  key={task.id}
+                  onClick={() => {
+                    setFilterTag(task.tag);
+                    setIsFilterOpen(false);
+                  }}
+                  type="button"
+                  className={`w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer ${filterTag === task.tag ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
+                >
+                  {getTagLabelByValue(task.tag)}
+                </button>
+              ))
+            }
           </div>
         )
       }
 
-    </div>
+    </div >
   );
 };
 export default TaskFilter;

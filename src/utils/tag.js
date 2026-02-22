@@ -54,7 +54,12 @@ const getTagByValue = (value) => {
   return TAGS.find(tag => tag.value === value);
 }
 
+const getTagLabelByValue = (value) => {
+  const tag = TAGS.find(tag => tag.value === value);
+  return tag ? tag.label : null;
+}
+
 export {
-  getAllTags, getTagByValue, TAGS
+  getAllTags, getTagByValue, getTagLabelByValue, TAGS
 };
 

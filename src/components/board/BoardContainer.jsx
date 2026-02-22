@@ -1,7 +1,9 @@
 
+import { useTaskContext } from '../../hooks';
 import BoardColumn from './BoardColumn';
 
-function BoardContainer({ tasks }) {
+function BoardContainer() {
+  const { tasks } = useTaskContext();
   const todoTasks = tasks.filter(task => task.status === 'todo');
   const inProgressTasks = tasks.filter(task => task.status === 'in-progress');
   const doneTasks = tasks.filter(task => task.status === 'done');
