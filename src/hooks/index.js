@@ -1,8 +1,10 @@
+import useDebounce, { useDebounceCallback } from "./useDebounce";
 import useTaskContext from "./useTaskContext";
 import useTaskModalContext from "./useTaskModalContext";
 
 export {
-  useTaskContext,
+  useDebounce,
+  useDebounceCallback, useTaskContext,
   useTaskModalContext
 };
 
