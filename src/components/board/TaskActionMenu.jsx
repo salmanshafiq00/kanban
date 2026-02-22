@@ -22,7 +22,7 @@ function TaskActionMenu({ task }) {
           <button
             key={status.key}
             onClick={() => {
-              taskDispatch({ type: TaskActionTypes.MOVE_TASK, payload: { id: task.id, newStatus: status.status } });
+              taskDispatch({ type: TaskActionTypes.MOVE_TASK, payload: { id: task.id, status: status.status } });
             }}
             type="button"
             className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
