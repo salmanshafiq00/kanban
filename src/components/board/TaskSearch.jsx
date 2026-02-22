@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useTaskContext } from "../../hooks";
 import { SearchSvg } from "../icons";
 
 function TaskSearch() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const { searchQuery, setSearchQuery } = useTaskContext();
   return (
     <div className="relative w-full sm:w-64">
       <SearchSvg />
