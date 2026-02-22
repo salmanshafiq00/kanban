@@ -85,6 +85,12 @@ const tasks = [
   },
 ];
 
+const boardColumns = [
+  { key: 'todo', title: 'To-Do', status: 'todo' },
+  { key: 'in-progress', title: 'In Progress', status: 'in-progress' },
+  { key: 'done', title: 'Done', status: 'done' }
+];
+
 const getAllTasks = () => {
   return tasks;
 }
@@ -101,5 +107,13 @@ const getAllDoneTasks = () => {
   return tasks.filter(task => task.status === 'done');
 }
 
-export { getAllDoneTasks, getAllInProgressTasks, getAllTasks, getAllTodoTasks, tasks };
+const getBoardColumns = () => {
+  return boardColumns;
+}
+
+const getOtherStatuses = (status) => {
+  return boardColumns.filter(column => column.status !== status);
+}
+
+export { getAllDoneTasks, getAllInProgressTasks, getAllTasks, getAllTodoTasks, getBoardColumns, getOtherStatuses, tasks };
 

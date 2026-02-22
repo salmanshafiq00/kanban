@@ -1,8 +1,11 @@
-import { TaskModalActionTypes } from '../../constants/action-types';
-import { useTaskModalContext } from '../../hooks';
+import { TaskActionTypes } from '../../constants/action-types';
+import { getOtherStatuses } from '../../data/task-data';
+import { useTaskContext, useTaskModalContext } from '../../hooks';
 
 function TaskActionMenu({ task }) {
-  const { dispatch } = useTaskModalContext();
+  const { dispatch: modalDispatch } = useTaskModalContext();
+  const { dispatch: taskDispatch } = useTaskContext();
+  const otherStatuses = getOtherStatuses(task.status);
   return (
     <div
       className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700 py-2 z-40"
@@ -14,24 +17,26 @@ function TaskActionMenu({ task }) {
       >
         Move to
       </p>
-      <button
-        type="button"
-        className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
-      >
-        In Progress
-      </button>
-      <button
-        type="button"
-        className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
-      >
-        Done
-      </button>
+      {
+        otherStatuses.map(status => (
+          <button
+            key={status.key}
+            onClick={() => {
+              taskDispatch({ type: TaskActionTypes.MOVE_TASK, payload: { id: task.id, newStatus: status.status } });
+            }}
+            type="button"
+            className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
+          >
+            {status.title}
+          </button>
+        ))
+      }
       <div
         className="border-t border-gray-100 mt-2 pt-2 space-y-1"
       >
         <button
           type="button"
-          onClick={() => dispatch({ type: TaskModalActionTypes.SHOW_MODAL, payload: { isEditMode: true, task } })}
+          onClick={() => modalDispatch({ type: TaskModalActionTypes.SHOW_MODAL, payload: { isEditMode: true, task } })}
           className="w-full text-left px-4 py-2 hover:bg-gray-50 cursor-pointer"
         >
           Edit Card

@@ -2,6 +2,9 @@ import { TaskActionTypes } from '../constants/action-types';
 
 function taskReducer(tasks, action) {
   const { type, payload } = action;
+  console.log('Reducer called with action:', action);
+  console.log('Current tasks state:', tasks);
+  console.log(tasks.find(task => task.id === payload.id));
   switch (type) {
     case TaskActionTypes.ADD_TASK:
       return [...tasks, payload]
